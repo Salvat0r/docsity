@@ -1,0 +1,189 @@
+/* Colors */
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 300;
+  line-height: 180%;
+  color: #f2f2f2;
+}
+body {
+  background-color: #333;
+}
+.flipcard {
+  cursor: pointer;
+}
+.flipcard .front,
+.flipcard .back {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  transition: transform 0.4s linear;
+}
+.flipcard .front {
+  transform: perspective(600px) rotateY(0deg);
+}
+.flipcard .front .front-content {
+  flex-basis: 100%;
+  width: 100%;
+}
+.flipcard .front .front-content .city,
+.flipcard .front .front-content .icon-weather,
+.flipcard .front .front-content .temperature,
+.flipcard .front .front-content .humidity,
+.flipcard .front .front-content .week {
+  flex-basis: 100%;
+  align-self: center;
+  text-align: center;
+}
+.flipcard .front .front-content .city {
+  font-size: 1.5rem;
+  padding: 2rem;
+}
+.flipcard .front .front-content .city .pin-map {
+  padding-right: 1rem;
+}
+.flipcard .front .front-content .city .pin-map img {
+  max-width: 20px;
+}
+.flipcard .front .front-content .icon-weather {
+  margin: 0rem auto;
+}
+.flipcard .front .front-content .icon-weather img {
+  align-self: center;
+  width: 100%;
+  max-width: 100px;
+  margin: 1rem auto;
+  display: block;
+}
+.flipcard .front .front-content .temperature {
+  font-size: 4rem;
+  font-weight: 300;
+}
+.flipcard .front .front-content .week {
+  border-top: 2px solid rgba(242, 242, 242, 0.3);
+  width: 100%;
+  margin: 1rem auto;
+}
+.flipcard .front .front-content .week .day {
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  border: 2px solid transparent;
+  transition: transform 0.2s linear;
+}
+.flipcard .front .front-content .week .day:hover {
+  background-color: rgba(242, 242, 242, 0.2);
+  border-radius: 10px;
+  border: 2px solid rgba(242, 242, 242, 0.1);
+  transform: scale(1.1);
+}
+.flipcard .front .front-content .week .day header,
+.flipcard .front .front-content .week .day .icon-weather,
+.flipcard .front .front-content .week .day .maxmin-temperature {
+  flex: 1 33%;
+  align-items: center;
+  align-self: center;
+}
+.flipcard .front .front-content .week .day header {
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.flipcard .front .front-content .week .day .icon-weather {
+  margin: 0.5rem auto;
+}
+.flipcard .front .front-content .week .day .icon-weather img {
+  width: calc(100%/2);
+}
+.flipcard .front .front-content .week .selected {
+  background-color: rgba(242, 242, 242, 0.2);
+  border-radius: 10px;
+  border: 2px solid rgba(242, 242, 242, 0.1);
+}
+.flipcard .back {
+  background-color: #f2f2f2;
+  height: 100%;
+  transform: perspective(600px) rotateY(180deg);
+}
+.flipcard .back .back-content {
+  width: 100%;
+  height: 100%;
+}
+.flipcard .frontflip {
+  transform: perspective(600px) rotateY(-180deg);
+}
+.flipcard .backflip {
+  transform: perspective(600px) rotateY(0deg);
+}
+@media (min-width: 970px) {
+  .middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .flipcard {
+    width: 800px;
+    height: 590px;
+  }
+  .flipcard .front,
+  .flipcard .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .flipcard .front .front-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+  }
+  .flipcard .front .front-content .city {
+    font-size: 2.5rem;
+    padding: 1rem;
+  }
+  .flipcard .front .front-content .icon-weather img {
+    max-width: 160px;
+  }
+  .flipcard .front .front-content .humidity {
+    font-size: 1.2rem;
+  }
+  .flipcard .front .front-content .week {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    margin: 1rem auto;
+    align-content: center;
+  }
+  .flipcard .front .front-content .week .day {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 1rem;
+  }
+  .flipcard .front .front-content .week .day header,
+  .flipcard .front .front-content .week .day .icon-weather,
+  .flipcard .front .front-content .week .day .maxmin-temperature {
+    flex: 1 100%;
+  }
+  .flipcard .front .front-content .week .day .icon-weather {
+    margin: 0.5rem auto;
+  }
+  .flipcard .front .front-content .week .day .icon-weather img {
+    width: 100%;
+  }
+}

@@ -1,0 +1,189 @@
+/* Colors */
+@nero: #333;
+@bianco: #f2f2f2;
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 300;
+    line-height: 180%;
+    color: @bianco;
+}
+
+body{
+    background-color: @nero;  
+}
+
+.flipcard {
+    cursor: pointer;
+    .front, .back {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        overflow: hidden;
+        backface-visibility: hidden;
+        position: absolute;
+        transition: transform .4s linear;
+    }
+    .front{
+        transform: perspective(600px) rotateY(0deg);
+        .front-content {
+            flex-basis: 100%;
+            width: 100%;
+            .city, .icon-weather, .temperature, .humidity, .week{
+                flex-basis: 100%;
+                align-self: center;
+                text-align: center;
+            }
+            .city {
+                font-size: 1.5rem;
+                padding: 2rem;
+                .pin-map{
+                    padding-right: 1rem;
+                    img {
+                        max-width: 20px;
+                    }
+                }
+            }
+            .icon-weather{
+                margin: 0rem auto;
+                img {
+                    align-self: center;
+                    width: 100%;
+                    max-width: 100px;
+                    margin: 1rem auto;
+                    display: block;
+                }
+            }
+            .temperature {
+                font-size: 4rem;
+                font-weight: 300;
+            }
+            .week{
+                border-top: 2px solid fade(@bianco, 30%);
+                width: 100%;
+                margin: 1rem auto;
+                .day {
+                    flex-wrap: wrap;
+                    flex-direction: row;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: stretch;
+                    border: 2px solid transparent;
+                    transition: transform .2s linear;
+                    &:hover {
+                        background-color: fade(@bianco,20);
+                        border-radius: 10px;
+                        border: 2px solid fade(@bianco,10);
+                        transform: scale(1.1);
+                    }
+                    header, .icon-weather, .maxmin-temperature{
+                        flex: 1 33%;
+                        align-items: center;
+                        align-self: center;
+                    }
+                    header {
+                        text-transform: uppercase;
+                        font-weight: 300;
+                    }
+                    .icon-weather {
+                        margin: 0.5rem auto;
+                        img {
+                            width: calc(100%/2);
+                        }
+                    }
+                }
+                .selected {
+                    background-color: fade(@bianco,20);
+                    border-radius: 10px;
+                    border: 2px solid fade(@bianco,10);
+                }
+            }
+        }
+    }
+    .back{
+        background-color: @bianco;
+        height: 100%;
+        transform: perspective(600px) rotateY(180deg);
+        .back-content {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .frontflip{
+        transform: perspective(600px) rotateY(-180deg);
+    }
+    .backflip{
+        transform: perspective(600px) rotateY(0deg);
+    }
+}
+
+@media (min-width: 970px) {
+    .middle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .flipcard {
+        width: 800px;
+        height: 590px;
+        .front, .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .front{
+            .front-content {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: auto;
+                .city{
+                    font-size: 2.5rem;
+                    padding: 1rem;
+                }
+                .icon-weather{
+                    img{
+                        max-width: 160px;
+                    }
+                }
+                .humidity{
+                    font-size: 1.2rem;
+                }
+                .week {
+                    flex-wrap: wrap;
+                    flex-direction: row;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: stretch;
+                    margin: 1rem auto;
+                    align-content: center;
+                    .day {
+                        flex-direction: column;
+                        flex-wrap: nowrap;
+                        padding: 1rem;
+                        header, .icon-weather, .maxmin-temperature {
+                            flex: 1 100%;
+                        }
+                        .icon-weather {
+                            margin: 0.5rem auto;
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+    }
+}
